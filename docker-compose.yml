@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   postgres:
     image: postgres:12-alpine
     environment:
@@ -11,15 +12,23 @@ services:
       - "5432:5432"
     networks:
       - my_network
+
   roche-products:
     image: roche-products:latest
     container_name: roche-products
     depends_on:
       - postgres
     ports:
-      - 8080:8080
+      - "8080:8080"
+    networks:
+      - my_network
     environment:
-      - spring.profiles.active=local
+#      - spring.profiles.active=prod
+      - embedded.postgresql.host=postgres
+      - embedded.postgresql.port=5432
+      - embedded.postgresql.schema=test_db
+      - embedded.postgresql.user=postgresql
+      - embedded.postgresql.password=letmein
 
 networks:
   my_network:

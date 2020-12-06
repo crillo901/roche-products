@@ -12,6 +12,7 @@ management:
 spring:
   lifecycle:
     timeout-per-shutdown-phase: 30s
+
   application:
     name: roche-products
 

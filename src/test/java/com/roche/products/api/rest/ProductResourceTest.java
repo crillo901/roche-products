@@ -51,9 +51,9 @@ class ProductResourceTest extends RocheProductsApplicationTestBase {
     public void listTest() {
         //given:
         //assert api endpoint is working
-        ResponseEntity<GetProductListResponse> initialAccountListResponse = restTemplate.getForEntity(createURLWithPort(productsUri), GetProductListResponse.class);
-        assertThat(initialAccountListResponse).isNotNull();
-        assertThat(initialAccountListResponse.getBody()).isNotNull();
+        ResponseEntity<GetProductListResponse> initialProductListResponse = restTemplate.getForEntity(createURLWithPort(productsUri), GetProductListResponse.class);
+        assertThat(initialProductListResponse).isNotNull();
+        assertThat(initialProductListResponse.getBody()).isNotNull();
 
         createNewProductForTesting();
         createNewProductForTesting();
@@ -64,7 +64,7 @@ class ProductResourceTest extends RocheProductsApplicationTestBase {
         //then:
         assertThat(response).isNotNull();
         assertThat(response.getBody()).isNotNull();
-        assertThat(response.getBody().getResponseList().size()).isGreaterThanOrEqualTo(initialAccountListResponse.getBody().getResponseList().size() + 2);
+        assertThat(response.getBody().getResponseList().size()).isGreaterThanOrEqualTo(initialProductListResponse.getBody().getResponseList().size() + 2);
     }
 
     @Test

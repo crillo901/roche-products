@@ -103,13 +103,18 @@ public class ProductResource {
         if (!product.getPriceInCents().equals(createProductRequest.getPriceInCents())) {
             product.setPriceInCents(createProductRequest.getPriceInCents());
         }
+        if (!product.getSku().equals(createProductRequest.getSku())) {
+            product.setSku(createProductRequest.getSku());
+        }
+        if(!product.getDeleted().equals(createProductRequest.getIsDeleted())){
+            product.setDeleted(createProductRequest.getIsDeleted());
+        }
 
         product = productService.updateProduct(product);
 
         GetProductResponse getProductResponse = createGetProductResponseFromProduct(product);
 
-
-        logger.info("updated product: {} ", getProductResponse);
+       logger.info("updated product: {} ", getProductResponse);
 
         return new ResponseEntity<>(getProductResponse, HttpStatus.OK);
     }

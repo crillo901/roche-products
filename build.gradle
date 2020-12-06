@@ -22,15 +22,14 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	compile 'org.springframework.boot:spring-boot-starter-aop'
 	compile group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+
 //Needed for testing with default embedded resource properties for postgres
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-config', version: '2.2.6.RELEASE'
 	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: '2.2.6.RELEASE'
+
 	compile 'org.springframework.boot:spring-boot-devtools'
 	compile group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.0'
 	runtime group: 'org.springframework.cloud', name: 'spring-cloud-dependencies', version: 'Hoxton.SR9', ext: 'pom'
-
-
-
 	implementation 'org.liquibase:liquibase-core'
     implementation 'org.jetbrains:annotations:19.0.0'
     runtimeOnly 'org.postgresql:postgresql'
@@ -43,7 +42,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 //test--
-	compile group: 'com.playtika.testcontainers', name: 'embedded-postgresql', version: '1.85'
+	testCompile group: 'com.playtika.testcontainers', name: 'embedded-postgresql', version: '1.85'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testCompile "org.junit.jupiter:junit-jupiter-api:5.4.2"
 	testCompile "org.junit.jupiter:junit-jupiter-params:5.4.2"
