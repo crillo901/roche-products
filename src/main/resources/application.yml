@@ -1,0 +1,64 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  application:
+    name: roche-products
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  data:
+    jpa:
+      repositories:
+        enabled: true
+  datasource:
+    url: jdbc:postgresql://${embedded.postgresql.host}:${embedded.postgresql.port}/${embedded.postgresql.schema}
+    username: ${embedded.postgresql.user}
+    password: ${embedded.postgresql.password}
+    hikari:
+      jdbc-url: ${spring.datasource.url}
+      username: ${spring.datasource.username}
+      password: ${spring.datasource.password}
+  liquibase:
+    change-log: classpath:/db/changelog/db.changeLog-master.xml
+    enabled: true
+
+  resources:
+    add-mappings: true
+
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    # Hides HHH000424: Disabling contextual LOB creation as createClob() method threw error
+    org.hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: WARN
+    org.hibernate.SQL: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: INFO
+
+embedded:
+  postgresql:
+    enabled: true
+    dockerImage: postgres:12-alpine
+    user: postgresql
+    password: letmein
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
