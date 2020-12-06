@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ProductResourceUtilsTest {
 
     @Test
-    public void testGetProductResponseFromProduct() {
+    public void testCreateGetProductResponseFromProduct_shouldGiveGetProductResponseObjectWithAllMembers() {
 
         Long id = new Random().nextLong();
         String name = UUID.randomUUID().toString();

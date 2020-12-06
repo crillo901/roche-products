@@ -38,6 +38,4 @@ public class CreateProductRequestTest {
         assertThat(createProductRequest.getPriceInCents()).isEqualTo(priceInCents);
         assertThat(createProductRequest.getIsDeleted()).isEqualTo(isDeleted);
     }
-
-
 }

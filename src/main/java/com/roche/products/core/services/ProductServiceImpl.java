@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 
@@ -67,11 +68,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public Product updateProduct(Product product) {
+    public Product updateProduct(@Valid Product product) {
         logger.info("update product request received {} ", product);
 
-        if (product.getId() <= 0) {
-            throw new IllegalArgumentException("id must be positive integer");
+        if (product == null) {
+            throw new IllegalArgumentException("product can not be null");
         }
         Product updatedProduct = productRepository.saveAndFlush(product);
 
@@ -82,7 +83,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public Product deleteProduct(Long id) {
+    public Product deleteProduct(@NotNull Long id) {
         logger.info("delete product request received for productId: {}", id);
 
         Product product = productRepository.getOne(id);
