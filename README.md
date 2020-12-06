@@ -19,7 +19,7 @@ roche-products api was created for managing products. REST API end-points;
 * Clone project to local machine and open it in your favorite editor, and Run main spring-boot class `RocheApplication`
 OR
 * Install `Docker`. locally and Once you have it, execute the following commands in the project root folder:
-    - `./gradlew clean && ./gradlew build`
+    - `./gradlew clean && ./gradlew build --info`
     - `docker build -t roche-products:latest .`
     - `docker-compose up`
 
@@ -27,10 +27,14 @@ OR
 The API port exposed to 8080 of your localhost.
 
 ##  Api documentation 
-* Swagger documentation can be found here
+* Swagger documentation can be found here:
 - `localhost:8080/swagger-ui.html`
 
 ## Testing
 * API endpoints integration/component tests are inside project.
+
+## Info
+* App info via standard actuator here: 
+- `http://localhost:8080/actuator`
 
 

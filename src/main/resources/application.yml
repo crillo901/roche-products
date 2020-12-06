@@ -2,7 +2,6 @@ server:
   port: 8080
   shutdown: graceful
 
-
 management:
   endpoints:
     web:
@@ -10,9 +9,6 @@ management:
         include: "*"
 
 spring:
-  lifecycle:
-    timeout-per-shutdown-phase: 30s
-
   application:
     name: roche-products
 

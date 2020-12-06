@@ -27,7 +27,6 @@ public class ProductResource {
     private static final Logger logger = LoggerFactory.getLogger(ProductResource.class);
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public ResponseEntity<GetProductResponse> create(@Valid @RequestBody CreateProductRequest createProductRequest) {
 
         logger.info("Request received for creating {} product", createProductRequest);
@@ -42,7 +41,6 @@ public class ProductResource {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public ResponseEntity<GetProductListResponse> list() {
 
         logger.info("Request received for listing products");
@@ -60,7 +58,6 @@ public class ProductResource {
     }
 
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public ResponseEntity<GetProductResponse> getProductById(@PathVariable Long id) {
 
         logger.info("Request received for getting product by id: {}", id);
@@ -90,7 +87,6 @@ public class ProductResource {
     }
 
     @PatchMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public ResponseEntity<GetProductResponse> updateProduct(@PathVariable Long id, @Valid @RequestBody CreateProductRequest createProductRequest) {
 
         logger.info("Request received for update product: {}", id);
@@ -106,7 +102,7 @@ public class ProductResource {
         if (!product.getSku().equals(createProductRequest.getSku())) {
             product.setSku(createProductRequest.getSku());
         }
-        if(!product.getDeleted().equals(createProductRequest.getIsDeleted())){
+        if (!product.getDeleted().equals(createProductRequest.getIsDeleted())) {
             product.setDeleted(createProductRequest.getIsDeleted());
         }
 
@@ -114,7 +110,7 @@ public class ProductResource {
 
         GetProductResponse getProductResponse = createGetProductResponseFromProduct(product);
 
-       logger.info("updated product: {} ", getProductResponse);
+        logger.info("updated product: {} ", getProductResponse);
 
         return new ResponseEntity<>(getProductResponse, HttpStatus.OK);
     }

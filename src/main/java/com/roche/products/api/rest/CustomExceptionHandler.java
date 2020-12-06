@@ -38,7 +38,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public final ResponseEntity<Object> handleBadRequestExceptions(EntityNotFoundException ex) {
+    public final ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException ex) {
         logger.error("EntityNotFoundException exception", ex);
         ErrorResponse error = new ErrorResponse(ex.getMessage(), "not-found");
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
